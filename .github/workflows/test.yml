@@ -18,9 +18,9 @@ jobs:
         id: create_bug_label
         with:
           route: POST /repos/:owner/:repo/labels
-          name: ":bug:"
+          name: "bug"
           color: f29513
-          description: "- [:bug:]"
+          description: "[bug]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       
