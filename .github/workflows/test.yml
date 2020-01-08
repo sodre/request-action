@@ -19,7 +19,7 @@ jobs:
         with:
           route: POST /repos/:repository:/labels
           repository: ${{ github.repository }}
-          name: "bug"
+          name: "yaml-safeLoad"
           color: f29513
           description: "[bug]: this is not going to work!"
         env:
