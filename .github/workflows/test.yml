@@ -41,6 +41,18 @@ jobs:
           json: ${{ steps.create_check_run.outputs.data }}
           id: "id"
 
+      # Try to create a yaml.safeLoad error
+      - name: "Update check run ${{ steps.parse_create_check_run.outputs.id }} "
+        uses: ./
+        id: update_check_run
+        with:
+          route: POST /repos/:owner/:repo/labels
+          name: ":bug:"
+          color: f29513
+          description: "[:bug:]"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
       # Update check run to completed, succesful status
       - name: "Update check run ${{ steps.parse_create_check_run.outputs.id }} "
         uses: ./
@@ -54,3 +66,4 @@ jobs:
           status: "completed"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
