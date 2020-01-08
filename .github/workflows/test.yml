@@ -17,7 +17,8 @@ jobs:
         uses: ./
         id: create_bug_label
         with:
-          route: POST /repos/:owner/:repo/labels
+          route: POST /repos/:repository:/labels
+          repository: ${{ github.repository }}
           name: "bug"
           color: f29513
           description: "[bug]"
