@@ -11,6 +11,19 @@ jobs:
           node-version: "12.x"
       - run: "npm ci"
       - run: "npm run build"
+      
+      # Try to create a yaml.safeLoad error
+      - name: "Create label with yaml things in description"
+        uses: ./
+        id: create_bug_label
+        with:
+          route: POST /repos/:owner/:repo/labels
+          name: ":bug:"
+          color: f29513
+          description: "- [:bug:]"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      
       - name: "Get latest release of ${{ github.repository }}"
         uses: ./
         id: get_latest_release
@@ -40,18 +53,6 @@ jobs:
         with:
           json: ${{ steps.create_check_run.outputs.data }}
           id: "id"
-
-      # Try to create a yaml.safeLoad error
-      - name: "Create label with yaml things in description"
-        uses: ./
-        id: create_bug_label
-        with:
-          route: POST /repos/:owner/:repo/labels
-          name: ":bug:"
-          color: f29513
-          description: "- [:bug:]"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
       # Update check run to completed, succesful status
       - name: "Update check run ${{ steps.parse_create_check_run.outputs.id }} "
