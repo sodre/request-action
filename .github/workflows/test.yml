@@ -49,7 +49,7 @@ jobs:
           route: POST /repos/:owner/:repo/labels
           name: ":bug:"
           color: f29513
-          description: "[:bug:]"
+          description: "[:bug:]-test"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
