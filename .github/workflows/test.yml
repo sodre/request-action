@@ -44,7 +44,7 @@ jobs:
       # Try to create a yaml.safeLoad error
       - name: "Create label with yaml things in description"
         uses: ./
-        id: 
+        id: create_bug_label
         with:
           route: POST /repos/:owner/:repo/labels
           name: ":bug:"
