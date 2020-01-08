@@ -21,10 +21,21 @@ jobs:
           repository: ${{ github.repository }}
           name: "yaml-safeLoad"
           color: f29513
+          description: "I am valid yaml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+            # Try to create a yaml.safeLoad error
+      
+      - name: "Create label with yaml things in description"
+        uses: ./
+        with:
+          route: POST /repos/:repository:/labels
+          repository: ${{ github.repository }}
+          name: "yaml-safeLoad-no-go"
+          color: f29513
           description: "[bug]: this is not going to work!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      
       - name: "Get latest release of ${{ github.repository }}"
         uses: ./
         id: get_latest_release
