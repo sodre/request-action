@@ -42,14 +42,14 @@ jobs:
           id: "id"
 
       # Try to create a yaml.safeLoad error
-      - name: "Update check run ${{ steps.parse_create_check_run.outputs.id }} "
+      - name: "Create label with yaml things in description"
         uses: ./
-        id: update_check_run
+        id: 
         with:
           route: POST /repos/:owner/:repo/labels
           name: ":bug:"
           color: f29513
-          description: "[:bug:]-test"
+          description: "- [:bug:]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
